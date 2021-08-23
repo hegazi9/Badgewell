@@ -1,20 +1,31 @@
-import { LOGIN_USER, LOGOUT_USER, UPDATE_USER } from "../types";
+import {LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS , REGISTER_ATTEMPT } from '../types';
 
-const INITIAL_STATE = {
-  user: null,
-};
-
-export default (state = INITIAL_STATE, action = {}) => {
+const INITIAL_STATE = {user: null, loading: false, error: null};
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case LOGIN_USER:
+    case LOGIN_ATTEMPT:
+      return {...INITIAL_STATE, loading: true};
+    case LOGIN_SUCCESS:
       return {
-        ...state,
-        user: action.payload,
+        ...INITIAL_STATE,
+        loading: false,
+        user: action.user,
+        error: action.error,
       };
-    case UPDATE_USER:
-      return { ...state, user: action.payload };
-    case LOGOUT_USER:
-      return { ...INITIAL_STATE };
+    case REGISTER_ATTEMPT:
+      return {...INITIAL_STATE, loading: true};
+
+    case REGISTER_SUCCESS:
+      return {
+        user: action.register,
+        loading: false ,
+        error : null
+      };
+
+    case LOGOUT:
+      return {
+        ...INITIAL_STATE,
+      };
 
     default:
       return state;

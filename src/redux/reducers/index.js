@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import langState from "./lang";
 import userState from "./user";
+import contactState from "./contacts";
 
 export default combineReducers({
-  langState,
   userState,
+  contactState
 });

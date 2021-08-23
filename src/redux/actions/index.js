@@ -1,3 +1,3 @@
-export * from "./lang";
 export * from "./user";
+export * from "./contacts";
 

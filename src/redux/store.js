@@ -8,7 +8,6 @@ const persistConfig = {
   key: "root",
   storage: AsyncStorage,
   whitelist: [
-    "langState",
     "userState",
   ],
 };

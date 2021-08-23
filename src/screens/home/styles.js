@@ -17,16 +17,20 @@ const styles = StyleSheet.create({
   },
   flat : 
   {
-     marginTop : hp('5%'),
+    height : hp('65%') ,
+    marginTop : hp('5%'),
     backgroundColor : COLORS.white , 
+    paddingVertical : 10
   },
   card : 
   {
     width: wp('100%'),
-    padding : 20 , 
+    padding : 5 , 
     backgroundColor : COLORS.white,
-    marginTop : hp('2%'),
+    marginTop : hp('1%'),
     elevation : 3 ,
+    alignItems : 'center' ,
+    justifyContent : 'center' ,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,
     shadowRadius: 2,
@@ -37,7 +41,7 @@ const styles = StyleSheet.create({
   },
   img : 
   {
-    width : 70 , height : 70 
+    width : 70 , height : 70 , borderRadius : 5 , margin : 5
   },
   name  : 
   {
@@ -46,7 +50,11 @@ const styles = StyleSheet.create({
   phone  : 
   {
     fontSize : 14 , color : COLORS.hint , width : wp('50%')
-  }
+  },
+  loading:
+   {
+    alignItems : 'center' , marginTop : hp('40%'),  justifyContent : 'center'
+   }
 });
 
 export default styles;
