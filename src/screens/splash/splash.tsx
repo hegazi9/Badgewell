@@ -24,8 +24,6 @@ const animate = () => {
  }
   
   useEffect(() => {
-    console.log('token splash ---> ', user);
-
     animate()
     setTimeout(() => {
       if(user)

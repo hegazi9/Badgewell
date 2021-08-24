@@ -16,13 +16,9 @@ export const getcontacts = (page: number) => {
           type: CONTACTS_SUCCESS,
           contact: result ,
         });
-        
-        console.log( "api response -----> "  , resp.data.docs);
-        console.log( "api result -----> "  , result);
-
+      
       }
     } catch (err) {
-      console.log(err.response.data.message);
       dispatch({type: CONTACTS_ERROR, error : err.response.data.message , });
     }
   };

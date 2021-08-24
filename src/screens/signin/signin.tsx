@@ -26,7 +26,6 @@ interface Props {
 }
 
 const Signin  : React.FC <Props>= ({navigation , route}) => {  
-  console.log( "register ---> " ,  route?.params?.register);
   const [flag , setflag] = useState(route?.params?.register);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
