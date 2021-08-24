@@ -18,10 +18,8 @@ export const loginuser = (username:String, password:String) => {
           type: LOGIN_SUCCESS,
           user: resp.data,
         });
-        console.log(resp);
       }
     } catch (err) {
-      console.log(err.response.data.message);
       dispatch({type: LOGIN_SUCCESS, error : err.response.data.message , });
     }
   };
@@ -52,7 +50,6 @@ export const registeruser = (username : String , password:String) => {
         console.log(resp);
       }
     } catch (err) {
-      console.log(err.response.data.message);
       dispatch({type: REGISTER_SUCCESS, errorregister : err.response.data.message , });
     }
   };
