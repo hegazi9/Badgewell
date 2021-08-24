@@ -53,7 +53,7 @@ export const registeruser = (username : String , password:String) => {
       }
     } catch (err) {
       console.log(err.response.data.message);
-      dispatch({type: REGISTER_SUCCESS, error : err.response.data.message , });
+      dispatch({type: REGISTER_SUCCESS, errorregister : err.response.data.message , });
     }
   };
 };

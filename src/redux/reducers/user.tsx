@@ -1,6 +1,6 @@
 import {LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS , REGISTER_ATTEMPT } from '../types';
 
-const INITIAL_STATE = {user: null, loading: false, error: null};
+const INITIAL_STATE = {user: null, register : null , loading: false, error: null , errorregister : null };
 export default (state = INITIAL_STATE, action:any) => {
   switch (action.type) {
     case LOGIN_ATTEMPT:
@@ -17,9 +17,9 @@ export default (state = INITIAL_STATE, action:any) => {
 
     case REGISTER_SUCCESS:
       return {
-        user: action.register,
+        register: action.register,
         loading: false ,
-        error : null
+        errorregister: action.errorregister,
       };
 
     case LOGOUT:

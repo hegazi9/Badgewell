@@ -12,38 +12,45 @@ import { Loading } from '../../components/loading';
 import { COLORS } from '../../common';
 
 interface Props {
-  navigation : any
+  navigation : any ,
+  route : any
 }
 
-const Signup : React.FC <Props> = ({navigation}) => {
+const Signup : React.FC <Props> = ({navigation , route}) => {
+  console.log("login --> " , route?.params?.login);
+    const [flag , setflag] = useState(route?.params?.login);
     const [username , setUsername] = useState('');
     const [password , setPassword] = useState('');
     const dispatch = useDispatch();
-    const user = useSelector((state : any) => state.userState.user );
-    const error = useSelector((state:any) => state.userState.error );
+    const register = useSelector((state : any) => state.userState.register );
+    const errorregister = useSelector((state:any) => state.userState.errorregister );
     const loading = useSelector((state:any) => state.userState.loading );
 
 
     useEffect(() => {
-      if(user?.token)
+      if(register?.token && flag != 'login' )
       {
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{name: 'Signin'}],
+            routes: [{name: 'Signin' ,
+              params: {
+                register: 'register',
+            },}],
           }),
         );
       }  
-  }, [user]);
+  }, [register]);
 
 
   useEffect(() => {
-    if(error) showToast(error)
-}, [error ]);
+    if(errorregister) showToast(errorregister)
+}, [errorregister ]);
 
   const login = async () => {
     if (!validate()) {
       await dispatch(registeruser(username, password));
+        
     }
   };
  const showToast = (msg: any) => {
@@ -75,14 +82,15 @@ const Signup : React.FC <Props> = ({navigation}) => {
     showToast(USERNAMEVALID)
     return true
    }
-   else false 
+   else { setflag('') 
+          return false  } 
  } 
 
   return (
     <>
     <Container/>
     <View style = {styles.container}>
-      <Header title = {SIGNIN} navigation = {navigation} home = {false}/>
+      <Header title = {SIGNUP} navigation = {navigation} home = {false}/>
       <View style = {styles.body}>
       <View style={styles.viewInput}>
           <TextInput

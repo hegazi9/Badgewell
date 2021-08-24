@@ -22,9 +22,12 @@ import { Loading } from '../../components/loading';
 
 interface Props {
   navigation : any
+  route : any
 }
 
-const Signin  : React.FC <Props>= ({navigation}) => {
+const Signin  : React.FC <Props>= ({navigation , route}) => {  
+  console.log( "register ---> " ,  route?.params?.register);
+  const [flag , setflag] = useState(route?.params?.register);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -34,7 +37,7 @@ const Signin  : React.FC <Props>= ({navigation}) => {
   const loading = useSelector((state : any ) => state.userState.loading );
 
   useEffect(() => {
-      if(user?.token)
+      if(user?.token && flag != 'register')
       {
         navigation.dispatch(
           CommonActions.reset({
@@ -78,7 +81,10 @@ const Signin  : React.FC <Props>= ({navigation}) => {
     } else if (username.length < 3) {
       showToast(USERNAMEVALID);
       return true;
-    } else false;
+    } else {
+      setflag('')
+      return false
+    }
   };
 
   return (
@@ -113,7 +119,7 @@ const Signin  : React.FC <Props>= ({navigation}) => {
           </TouchableOpacity>          
           <TouchableOpacity
             style={styles.row}
-            onPress={() => navigation.navigate('Signup')}>
+            onPress={() => navigation.navigate('Signup', {login : 'login'})}>
             <Text style={styles.register}>{LOGIN}</Text>
             <Text style={[styles.register, {color: COLORS.primary}]}>
               {SIGNUP}
