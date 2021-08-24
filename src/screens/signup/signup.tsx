@@ -30,7 +30,7 @@ const Signup : React.FC <Props> = ({navigation}) => {
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{name: 'Home'}],
+            routes: [{name: 'Signin'}],
           }),
         );
       }  
