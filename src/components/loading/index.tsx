@@ -1,6 +1,12 @@
 import React from "react";
 import {ActivityIndicator} from "react-native";
-export const Loading = ({size , color }) => {
+
+interface Props {
+  color : any ,
+  size : any
+}
+
+export const Loading : React.FC <Props> = ({size , color }) => {
 
   return ( 
     <ActivityIndicator 

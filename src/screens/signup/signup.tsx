@@ -4,21 +4,24 @@ import styles from './styles';
 import Toast from 'react-native-toast-message';
 import {useDispatch, useSelector} from 'react-redux';
 import { Container, Header } from '../../components';
-import {SIGNIN , USERNAME , PASSWORD , ERROR  , 
+import {SIGNIN , USERNAME , PASSWORD ,
   PASSVALID , PASSEMPTY , USEREMPTY, USERNAMEVALID, SIGNUP } from '../../utils/constance';
 import {registeruser } from '../../redux/actions';
 import {CommonActions} from '@react-navigation/native';
 import { Loading } from '../../components/loading';
 import { COLORS } from '../../common';
 
+interface Props {
+  navigation : any
+}
 
-const Signup = ({navigation}) => {
+const Signup : React.FC <Props> = ({navigation}) => {
     const [username , setUsername] = useState('');
     const [password , setPassword] = useState('');
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.userState.user );
-    const error = useSelector((state) => state.userState.error );
-    const loading = useSelector((state) => state.userState.loading );
+    const user = useSelector((state : any) => state.userState.user );
+    const error = useSelector((state:any) => state.userState.error );
+    const loading = useSelector((state:any) => state.userState.loading );
 
 
     useEffect(() => {
@@ -43,11 +46,10 @@ const Signup = ({navigation}) => {
       await dispatch(registeruser(username, password));
     }
   };
- const showToast = (msg) => {
+ const showToast = (msg: any) => {
   Toast.show({
     type: 'error',
-    text1: ERROR ,
-    text2: msg ,
+    text1: msg ,
     visibilityTime: 2000,
     autoHide: true,
   });
@@ -80,7 +82,7 @@ const Signup = ({navigation}) => {
     <>
     <Container/>
     <View style = {styles.container}>
-      <Header title = {SIGNIN}/>
+      <Header title = {SIGNIN} navigation = {navigation} home = {false}/>
       <View style = {styles.body}>
       <View style={styles.viewInput}>
           <TextInput
