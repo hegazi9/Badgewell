@@ -43,7 +43,7 @@ const Signup : React.FC <Props> = ({navigation , route}) => {
 
 
   useEffect(() => {
-    if(errorregister) showToast(errorregister)
+    if(errorregister && flag != 'login') showToast(errorregister)
 }, [errorregister ]);
 
   const login = async () => {
