@@ -8,7 +8,7 @@ import Splash from "../screens/splash/splash";
 
 const Stack = createStackNavigator();
 
-export default MainStackNavigator = () => {
+ const MainStackNavigator = () => {
   return (
     <Stack.Navigator >
       <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
@@ -19,4 +19,5 @@ export default MainStackNavigator = () => {
   );
 };
 
+export default MainStackNavigator ;
 

@@ -2,10 +2,20 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import { COLORS } from "../../common/colors";
 
-export const Button = ({ title, onPress, center, width, backgroundColor, radius }) => {
+interface Props 
+{
+  title : String , 
+  center : String, 
+  width : any , 
+  onPress : () => void ,
+  backgroundColor : String, 
+  radius : String 
+}
 
-  return (
-    <TouchableOpacity
+export const Button : React.FC <Props> = ({ title, onPress, center, width, backgroundColor, radius }) => {
+
+  return ( 
+  <TouchableOpacity
       style={[styles.buttonContainer,
       width && { width },
       backgroundColor && { backgroundColor },

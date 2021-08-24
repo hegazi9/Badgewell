@@ -5,14 +5,21 @@ import {CommonActions} from '@react-navigation/native';
 import { useSelector} from 'react-redux';
 import {SplashTxt} from '../../utils/constance'
 
-const Splash = ({navigation}) => {
-  const user = useSelector((state) => state.userState.user );
+interface Props
+{
+  navigation : any
+}
+
+const Splash :React.FC <Props>= ({navigation}) => {
+  const user = useSelector((state:any) => state.userState.user );
   const [fadeAnimation, setFadeAnimation] = useState(new Animated.Value(0))
 
 const animate = () => {
-  Animated.timing(fadeAnimation, {
+  Animated.timing(fadeAnimation, { 
     toValue: 1,
-    duration: 3000
+    duration: 3000,
+    useNativeDriver: true // Add This line
+
   }).start();
  }
   

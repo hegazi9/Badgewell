@@ -10,8 +10,14 @@ import {WELCOME, LOGOUT} from '../../utils/constance';
 import {logoutuser} from '../../redux/actions';
 import {CommonActions} from '@react-navigation/native';
 
+interface Props 
+{
+  title : String ,
+  home : boolean ,
+  navigation : any
+}
 
-export const Header = ({title, home , navigation}) => {
+export const Header : React.FC <Props>= ({title, home , navigation}) => {
 
 const dispatch = useDispatch();
 

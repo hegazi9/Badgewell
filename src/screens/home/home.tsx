@@ -9,11 +9,15 @@ import {Loading} from '../../components/loading';
 import {COLORS} from '../../common';
 
 let page = 1;
-const Home = ({navigation}) => {
+interface Props 
+{
+  navigation : any
+}
+
+const Home : React.FC <Props> = ({navigation}) => {
   const dispatch = useDispatch();
-  const contact = useSelector(state => state.contactState.contact);
-  const loading = useSelector(state => state.contactState.loading);
-  const [refreshing, setrefreshing] = useState(false);
+  const contact = useSelector((state : any )=> state.contactState.contact);
+  const loading = useSelector((state : any ) => state.contactState.loading);
 
   useEffect(() => {
     dispatch(getcontacts(page));
@@ -28,7 +32,7 @@ const Home = ({navigation}) => {
     return <View style={styles.footer} />;
   };
 
-  const userItem = ({item, index}) => {
+  const userItem = ({item} : {item:any}) => {
     return (
       <View style={styles.card}>
         <View style={{flexDirection: 'row'}}>
@@ -52,13 +56,13 @@ const Home = ({navigation}) => {
     );
   };
 
-  const _keyExtractor = (item, index) => index + Math.random();
+  const _keyExtractor = ({index} : {index:any} ) => index + Math.random();
 
   return (
     <>
       <Container />
       <View style={styles.container}>
-        <Header title={HOME} home={true} navigation={navigation} />
+        <Header title={HOME} home navigation={navigation} />
         <View style={styles.body}>
           {loading && page == 1 ? (
             <View style={styles.loading}>

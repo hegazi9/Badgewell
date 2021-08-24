@@ -4,8 +4,8 @@ import {baseURl} from '../../utils/constance'
 import axios from 'axios';
 
 
-export const loginuser = (username, password) => {
-  return async (dispatch) => {
+export const loginuser = (username:String, password:String) => {
+  return async (dispatch:any) => {
     dispatch({type: LOGIN_ATTEMPT});
     //call the backend
     try {
@@ -28,15 +28,15 @@ export const loginuser = (username, password) => {
 };
 
 export const logoutuser = () => {
-  return  (dispatch) => {
+  return  (dispatch:any) => {
   dispatch({
     type: LOGOUT, user : null
   });
 }
 }
 
-export const registeruser = (username, password) => {
-  return async (dispatch) => {
+export const registeruser = (username : String , password:String) => {
+  return async (dispatch:any) => {
     dispatch({type: REGISTER_ATTEMPT});
     //call the backend
     try {

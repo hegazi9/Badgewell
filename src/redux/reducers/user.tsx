@@ -1,7 +1,7 @@
 import {LOGIN_ATTEMPT, LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS , REGISTER_ATTEMPT } from '../types';
 
 const INITIAL_STATE = {user: null, loading: false, error: null};
-export default (state = INITIAL_STATE, action) => {
+export default (state = INITIAL_STATE, action:any) => {
   switch (action.type) {
     case LOGIN_ATTEMPT:
       return {...INITIAL_STATE, loading: true};

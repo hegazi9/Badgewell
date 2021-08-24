@@ -1,7 +1,7 @@
 import { CONTACTS_ATTEMPT , CONTACTS_SUCCESS } from "../types";
 
 const INITIAL_STATE = {contact: null, loading: false};
-export default (state = INITIAL_STATE, action) => {
+export default (state = INITIAL_STATE, action:any) => {
   switch (action.type) {
     case CONTACTS_ATTEMPT:
       return {...state, loading: true};

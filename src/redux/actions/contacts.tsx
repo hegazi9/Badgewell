@@ -1,10 +1,10 @@
 import { CONTACTS_SUCCESS , CONTACTS_ERROR , CONTACTS_ATTEMPT} from "../types";
 import API from '../../utils/interceptor';
 
-let result = [];
+let result: any[];
 
-export const getcontacts = (page  ) => {
-  return async (dispatch) => {
+export const getcontacts = (page: number) => {
+  return async (dispatch:any) => {
     dispatch({type: CONTACTS_ATTEMPT});
     //call the backend
     try {

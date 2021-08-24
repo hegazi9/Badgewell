@@ -8,7 +8,6 @@ import {
   SIGNIN,
   USERNAME,
   PASSWORD,
-  ERROR,
   LOGIN,
   PASSVALID,
   PASSEMPTY,
@@ -21,15 +20,18 @@ import {loginuser} from '../../redux/actions';
 import {CommonActions} from '@react-navigation/native';
 import { Loading } from '../../components/loading';
 
+interface Props {
+  navigation : any
+}
 
-const Signin = ({navigation}) => {
+const Signin  : React.FC <Props>= ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.userState.user );
-  const error = useSelector((state) => state.userState.error );
-  const loading = useSelector((state) => state.userState.loading );
+  const user = useSelector((state : any) => state.userState.user );
+  const error = useSelector((state : any ) => state.userState.error );
+  const loading = useSelector((state : any ) => state.userState.loading );
 
   useEffect(() => {
       if(user?.token)
@@ -54,11 +56,10 @@ const Signin = ({navigation}) => {
     }
   };
 
-  const showToast = msg => {
+  const showToast = (msg:any)=> {
     Toast.show({
       type: 'error',
-      text1: ERROR,
-      text2: msg,
+      text1: msg,
       visibilityTime: 2000,
       autoHide: true,
     });
@@ -84,7 +85,7 @@ const Signin = ({navigation}) => {
     <>
       <Container />
       <View style={styles.container}>
-        <Header title={SIGNIN} />
+        <Header title={SIGNIN} navigation = {navigation}  home = {false}/>
         <View style={styles.body}>
           <View style={styles.viewInput}>
             <TextInput
