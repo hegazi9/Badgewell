@@ -1,6 +1,6 @@
 import { CONTACTS_ATTEMPT , CONTACTS_SUCCESS } from "../types";
 
-const INITIAL_STATE = {contact: null, loading: false};
+const INITIAL_STATE = {contact: null, loading: false , nextPage : null };
 export default (state = INITIAL_STATE, action:any) => {
   switch (action.type) {
     case CONTACTS_ATTEMPT:
@@ -10,6 +10,7 @@ export default (state = INITIAL_STATE, action:any) => {
         ...INITIAL_STATE,
         loading: false,
         contact: action.contact,
+        nextPage : action.nextPage
       };
 
       

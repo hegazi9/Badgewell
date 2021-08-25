@@ -15,7 +15,11 @@ export const getcontacts = (page: number) => {
         dispatch({
           type: CONTACTS_SUCCESS,
           contact: result ,
+          nextPage : resp.data.hasNextPage
         });
+      console.log(result);
+      console.log(resp.data.hasNextPage);
+
       
       }
     } catch (err) {

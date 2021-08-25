@@ -89,7 +89,7 @@ const Signup : React.FC <Props> = ({navigation , route}) => {
     <>
     <Container/>
     <View style = {styles.container}>
-      <Header title = {SIGNUP} navigation = {navigation} home = {false}/>
+      <Header title = {SIGNUP} navigation = {navigation} home = {false} name = {''}/>
       <View style = {styles.body}>
       <View style={styles.viewInput}>
           <TextInput

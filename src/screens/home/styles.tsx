@@ -1,4 +1,4 @@
-import { StyleSheet, I18nManager } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -8,19 +8,18 @@ import { COLORS } from "../../common";
 const styles = StyleSheet.create({
   container: {
     backgroundColor : COLORS.primary,
-    width : wp('100%') , height : hp('100%') ,
+    flex : 1 
   },
   body : 
   {
-    width : wp('100%') , borderTopLeftRadius  :  40  ,  alignItems : 'center',
-    height : hp('100%') , backgroundColor : COLORS.white , 
+     borderTopLeftRadius  :  40  ,  alignItems : 'center',
+     backgroundColor : COLORS.white , height : hp('80%') ,
   },
   flat : 
   {
-    height : hp('65%') ,
-    marginTop : hp('5%'),
     backgroundColor : COLORS.white , 
-    paddingVertical : 10
+    paddingVertical :  10 ,
+    paddingBottom : Platform.OS == "ios" ? 50 : 0
   },
   card : 
   {
@@ -34,10 +33,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,
     shadowRadius: 2,
-  },
-  footer : 
-  {
-    height : hp('30%')
+    zIndex : -1
   },
   img : 
   {
