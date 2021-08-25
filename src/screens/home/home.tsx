@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {View, Image, Text, FlatList} from 'react-native';
 import styles from './styles';
 import {Container, Header} from '../../components';
@@ -8,12 +8,11 @@ import {getcontacts} from '../../redux/actions';
 import {Loading} from '../../components/loading';
 import {COLORS} from '../../common';
 
-let page = 1;
 interface Props 
 {
   navigation : any
 }
-
+let page = 1;
 const Home : React.FC <Props> = ({navigation}) => {
   const dispatch = useDispatch();
   const contact = useSelector((state : any )=> state.contactState.contact);
@@ -56,7 +55,7 @@ const Home : React.FC <Props> = ({navigation}) => {
     );
   };
 
-  const _keyExtractor = ({index} : {index:any} ) => index + Math.random();
+  const _keyExtractor = ({item} : {item:any} ) => item;
 
   return (
     <>
