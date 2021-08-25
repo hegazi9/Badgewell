@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   {
     backgroundColor : COLORS.white , 
     paddingVertical :  10 ,
-    paddingBottom : Platform.OS == "ios" ? 50 : 0
+    paddingBottom : Platform.OS == "ios" ? 50 : 30
   },
   card : 
   {
