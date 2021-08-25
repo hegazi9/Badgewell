@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {View, Image, Text, FlatList} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, Text, FlatList ,  Image} from 'react-native';
 import styles from './styles';
 import {Container, Header} from '../../components';
 import {HOME, NAME, PHONE} from '../../utils/constance';
@@ -8,28 +8,26 @@ import {getcontacts} from '../../redux/actions';
 import {Loading} from '../../components/loading';
 import {COLORS} from '../../common';
 
-let page = 1;
 interface Props 
 {
-  navigation : any
+  navigation : any ,
+  route : any
 }
-
-const Home : React.FC <Props> = ({navigation}) => {
+let page = 1;
+const Home : React.FC <Props> = ({navigation , route }) => {
   const dispatch = useDispatch();
   const contact = useSelector((state : any )=> state.contactState.contact);
   const loading = useSelector((state : any ) => state.contactState.loading);
-
+  const nextPage = useSelector((state : any )=> state.contactState.nextPage);
+  
   useEffect(() => {
     dispatch(getcontacts(page));
   }, []);
 
   const handlemore = () => {
     page = page + 1;
+    if(nextPage)
     dispatch(getcontacts(page));
-  };
-
-  const _footer = () => {
-    return <View style={styles.footer} />;
   };
 
   const userItem = ({item} : {item:any}) => {
@@ -56,13 +54,13 @@ const Home : React.FC <Props> = ({navigation}) => {
     );
   };
 
-  const _keyExtractor = ({index} : {index:any} ) => index + Math.random();
+  const _keyExtractor = ({item} : {item:any} ) => item;
 
   return (
     <>
       <Container />
       <View style={styles.container}>
-        <Header title={HOME} home navigation={navigation} />
+        <Header title={HOME} home navigation={navigation} name = {route?.params?.name} />
         <View style={styles.body}>
           {loading && page == 1 ? (
             <View style={styles.loading}>
@@ -70,23 +68,23 @@ const Home : React.FC <Props> = ({navigation}) => {
             </View>
           ) : (
             <View style={styles.flat}>
-              <FlatList
-                showsVerticalScrollIndicator={false}
+              <FlatList    
                 data={contact}
+                extraData={contact}
                 renderItem={userItem}
                 keyExtractor={_keyExtractor}
-                ListFooterComponent={_footer}
-                onEndReachedThreshold={0.01}
+                onEndReachedThreshold={.01}
                 onEndReached={() => handlemore()}
               />
             </View>
 
           )}
-              { loading  && page != 1 ? 
-                   <Loading size={'small'} color={COLORS.primary} /> : null 
-              }
-
-             
+              { loading && page != 1 ? 
+                   <View style = {{position : 'absolute' , justifyContent : 'center' , bottom : '10%' , zIndex : 1 }}>
+                   <Loading size={'small'} color={COLORS.primary} /> 
+                   </View>
+                   : null 
+              } 
         </View>
       </View>
     </>

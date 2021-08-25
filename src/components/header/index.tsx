@@ -4,7 +4,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import {COLORS} from '../../common/colors';
 import {WELCOME, LOGOUT} from '../../utils/constance';
 import {logoutuser} from '../../redux/actions';
@@ -14,10 +14,11 @@ interface Props
 {
   title : String ,
   home : boolean ,
-  navigation : any
+  navigation : any , 
+  name : String
 }
 
-export const Header : React.FC <Props>= ({title, home , navigation}) => {
+export const Header : React.FC <Props>= ({title, home , navigation , name}) => {
 
 const dispatch = useDispatch();
 
@@ -34,12 +35,15 @@ const logout = async ()=>{
   return (
     <>
       <SafeAreaView />
-      <View style={{padding: 30}}>
-        {home ? (
+      <View style={styles.container}>
+        {home ? 
+        <>
           <Text onPress = {()=>logout()} style={[styles.txt,{textAlign:'right'}]}>{LOGOUT}</Text>
-        ) : (
-          <Text style={styles.txt}>{WELCOME}</Text>
-        )}
+          <Text style={styles.txt}>{WELCOME}{" "}{name}</Text>
+        </>
+         : null
+        }
+
         <Text style={styles.title}>{title}</Text>
       </View>
     </>
@@ -60,4 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     marginTop: hp('2%'),
   },
+  container : {
+    padding: 30 , height : hp('20%')
+  }
 });

@@ -41,7 +41,11 @@ const Signin  : React.FC <Props>= ({navigation , route}) => {
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{name: 'Home'}],
+            routes: [{name: 'Home' ,
+            params: {
+              name: username ,
+            }
+            }],
           }),
         );
       }  
@@ -90,7 +94,7 @@ const Signin  : React.FC <Props>= ({navigation , route}) => {
     <>
       <Container />
       <View style={styles.container}>
-        <Header title={SIGNIN} navigation = {navigation}  home = {false}/>
+        <Header title={SIGNIN} navigation = {navigation}  home = {false} name = {''}/>
         <View style={styles.body}>
           <View style={styles.viewInput}>
             <TextInput
